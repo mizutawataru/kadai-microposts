@@ -1,4 +1,4 @@
-<ul class="list-unstyled">
+ <ul class="list-unstyled">
     @foreach ($microposts as $micropost)
         <li class="media mb-3">
             <img class="mr-2 rounded" src="{{ Gravatar::src($micropost->user->email, 50) }}" alt="">
@@ -11,8 +11,8 @@
                 </div>
                 <div>
                     @if (Auth::id() == $micropost->user_id)
-                        {!! Form::open(["rote" => ["microposts.destroy", $micropost->id], "method" => "delete"]) !!}
-                            {!! Form::submit("Delete", ["class" => "btn btn-danger btn-sm"]) !!}
+                        {!! Form::open(['route' => ['microposts.destroy', $micropost->id], 'method' => 'delete']) !!}
+                            {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
                         {!! Form::close() !!}
                     @endif
                 </div>
