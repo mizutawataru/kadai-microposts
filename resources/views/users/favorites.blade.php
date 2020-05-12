@@ -3,11 +3,11 @@
 @section('content')
     <div class='row'>
         <aside class='col-sm-4'>
-            @include('user.card', ['user' => $user])
+            @include('users.card', ['user' => $user])
         </aside>
         <div class='col-sm-8'>
             @include('users.navtabs', ['user' => $user])
-            @include('microposts.micropost', ['micropost' => $micropost])
+            @include('microposts.microposts', ['microposts' => $microposts])
         </div>
     </div>
 @endsection

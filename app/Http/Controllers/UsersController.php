@@ -11,26 +11,26 @@ class UsersController extends Controller
 {
     public function index()
     {
-        $users = User::orderBy("id", "desc")->pagenate(10);
+        $users = User::orderBy('id', 'desc')->paginate(10);
         
-        return view("users.index", [
-            "users" => $users,
+        return view('users.index', [
+            'users' => $users,
             ]);
     }
     
     public function show($id)
     {
         $user = User::find($id);
-        $microposts = $user->microposts()->orderBy("create_at", "desc")->paginate(10);
+        $microposts = $user->microposts()->orderBy('created_at', 'desc')->paginate(10);
         
         $data = [
-            "user" => $user,
-            "microposts" => $microposts,
+            'user' => $user,
+            'microposts' => $microposts,
         ];
         
         $data += $this->counts($user);
         
-        return view("users.show", $data);
+        return view('users.show', $data);
     }
     
     public function followings($id)
@@ -65,15 +65,15 @@ class UsersController extends Controller
     
     public function favorites($id)
     {
-        $user = Micropost::find($id);
-        $favorites = $micropost->favorites()->paginate(10);
+        $user = User::find($id);
+        $favorites = $user->favorites()->paginate(10);
         
         $data = [
-            'micropost' => $micropost,
+            'user' => $user,
             'microposts' => $favorites,
             ];
         
-        $data += $this->counts($micropost);
+        $data += $this->counts($user);
         
         return view('users.favorites', $data);
     }
